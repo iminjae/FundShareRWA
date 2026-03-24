@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #070b14;
+}
+
+body {
+  color: #e2e8f0;
+  font-family: "Sora", "Manrope", "Segoe UI", sans-serif;
+  background-image:
+    radial-gradient(circle at 18% 20%, rgba(56, 189, 248, 0.13), transparent 38%),
+    radial-gradient(circle at 82% 0%, rgba(99, 102, 241, 0.2), transparent 32%),
+    radial-gradient(circle at 45% 90%, rgba(14, 165, 233, 0.1), transparent 38%);
+}
+
+.app-grid {
+  background-image: linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.panel {
+  @apply rounded-2xl border border-line bg-slate-900/45 backdrop-blur-md shadow-glow;
+}
+
+.panel-title {
+  @apply text-sm font-medium text-slate-300;
+}
+
+.panel-value {
+  @apply mt-2 text-2xl font-semibold text-slate-100;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition;
+}
+
+.btn-primary {
+  @apply btn border border-indigo-300/30 bg-gradient-to-r from-indigo-500 to-sky-500 text-white hover:from-indigo-400 hover:to-sky-400;
+}
+
+.btn-secondary {
+  @apply btn border border-slate-600 bg-slate-900/60 text-slate-100 hover:border-slate-400;
+}
+
+.btn-danger {
+  @apply btn border border-rose-400/40 bg-rose-500/15 text-rose-200 hover:bg-rose-500/25;
+}

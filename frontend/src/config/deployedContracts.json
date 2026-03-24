@@ -1,0 +1,11 @@
+{
+  "chainId": 6158,
+  "networkName": "mainnet",
+  "deployer": "0x5f8083805Ed8bF74fdDF0EEF4ff5E2879bCD6220",
+  "deployedAt": "2026-03-24T09:27:57.529Z",
+  "contracts": {
+    "FundShareToken": "0x67d79c831a258E36E273fb5B6095f0f45bd0d1CD",
+    "RedemptionManager": "0x293C13C5a293DAA8b58aE7818f9afd2970100F66"
+  },
+  "rpcUrl": "https://rpc.mintaray.xyz"
+}
