@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { AccessStateCard } from "@/components/common/AccessStateCard";
+import { DemoAccessCard } from "@/components/common/DemoAccessCard";
 import { TransactionModal } from "@/components/common/TransactionModal";
 import { RequestFilterTabs, type RequestFilter } from "@/components/operator/RequestFilterTabs";
 import { RedemptionQueueTable } from "@/components/operator/RedemptionQueueTable";
@@ -69,12 +70,15 @@ export default function OperatorPage() {
       </section>
 
       {!isConnected ? (
-        <AccessStateCard
-          title={m.common.connectRequiredTitle}
-          description={m.common.connectRequiredDescription}
-          actionLabel={m.topbar.connect}
-          onAction={() => void connectWallet()}
-        />
+        <>
+          <AccessStateCard
+            title={m.common.connectRequiredTitle}
+            description={m.common.connectRequiredDescription}
+            actionLabel={m.topbar.connect}
+            onAction={() => void connectWallet()}
+          />
+          <DemoAccessCard compact />
+        </>
       ) : isWrongNetwork ? (
         <AccessStateCard
           title={m.common.wrongNetworkTitle}
@@ -87,7 +91,10 @@ export default function OperatorPage() {
           {error}
         </section>
       ) : !data.hasOperatorRole ? (
-        <AccessStateCard title={m.common.restrictedTitle} description={m.operator.noRoleDescription} />
+        <>
+          <AccessStateCard title={m.common.restrictedTitle} description={m.operator.noRoleDescription} />
+          <DemoAccessCard compact />
+        </>
       ) : (
         <>
           <section className="grid gap-4 md:grid-cols-3">

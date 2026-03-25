@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AccessStateCard } from "@/components/common/AccessStateCard";
+import { DemoAccessCard } from "@/components/common/DemoAccessCard";
 import { useLocale } from "@/hooks/useLocale";
 import { useWallet } from "@/hooks/useWallet";
 import { NETWORK_SETUP } from "@/config/network";
@@ -39,6 +40,8 @@ export default function HomePage() {
           ))}
         </ul>
       </section>
+
+      <DemoAccessCard title={m.landing.howToTestTitle} />
 
       <section className="grid gap-4 xl:grid-cols-2">
         <section className="panel p-6">

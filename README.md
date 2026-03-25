@@ -141,20 +141,36 @@ npm run dev
     - FundShareToken: `DEFAULT_ADMIN_ROLE`, `COMPLIANCE_ROLE`, `MINTER_ROLE`, `PAUSER_ROLE`
     - RedemptionManager: `DEFAULT_ADMIN_ROLE`
 
-## 10. 지갑/네트워크 동작
+## 10. Demo Access (How to Test)
+
+이 프로젝트는 **permissioned asset model**을 사용합니다.  
+따라서 Investor/Operator 플로우 테스트를 위해서는 사전 지갑 등록이 필요합니다.
+
+라이브 데모 테스트를 원하면 아래 텔레그램으로 **지갑 주소만** 보내주세요.
+
+- Telegram handle: `@mantaminjae`
+- Telegram URL: `https://t.me/mantaminjae`
+
+안내 원칙:
+- whitelist/demo 설정에는 **지갑 주소만 필요**합니다.
+- 필요 시 투자자 화이트리스트 등록과 데모 FST 민팅을 지원합니다.
+- **시드 문구(Seed Phrase)는 절대 요청하지 않습니다.**
+- **프라이빗 키(Private Key)는 절대 요청하지 않습니다.**
+
+## 11. 지갑/네트워크 동작
 
 - 자동 지갑 연결 없음 (수동 Connect 버튼)
 - 읽기 전용 조회는 설정된 RPC(`NEXT_PUBLIC_READ_RPC_URL` 또는 배포 JSON의 `rpcUrl`) 사용
 - 쓰기 트랜잭션은 BrowserProvider + signer 사용
 - 잘못된 네트워크 연결 시 접근 제한 상태 표시
 
-## 11. 다국어(i18n)
+## 12. 다국어(i18n)
 
 - 한국어/영어 지원 (`ko` / `en`)
 - 상단 언어 스위처 제공
 - 주요 텍스트(네비게이션/페이지/상태/모달) 번역 적용
 
-## 12. 트랜잭션 UX
+## 13. 트랜잭션 UX
 
 - 공통 트랜잭션 모달 사용
   - wallet 승인 대기
@@ -163,11 +179,10 @@ npm run dev
   - 성공/실패 상태
 - pending 중 중복 클릭 방지 및 인터랙션 제한
 
-## 13. 주의사항
+## 14. 주의사항
 
 - 현재 `.env`의 개인키는 절대 공개 저장소에 커밋하면 안 됩니다.
 - 운영 환경에서는 신규 배포 후 반드시:
   1. `deployedContracts.json`/ABI 동기화 확인
   2. 프론트 `.env.local` 값 확인
   3. 프론트 서버 재시작
-

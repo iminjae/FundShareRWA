@@ -2,6 +2,7 @@
 
 import { getWriteContracts } from "@/lib/contracts";
 import { AccessStateCard } from "@/components/common/AccessStateCard";
+import { DemoAccessCard } from "@/components/common/DemoAccessCard";
 import { TransactionModal } from "@/components/common/TransactionModal";
 import { ApproveCard } from "@/components/investor/ApproveCard";
 import { MyRequestsTable } from "@/components/investor/MyRequestsTable";
@@ -55,12 +56,15 @@ export default function InvestorPage() {
       </section>
 
       {!isConnected ? (
-        <AccessStateCard
-          title={m.common.connectRequiredTitle}
-          description={m.common.connectRequiredDescription}
-          actionLabel={m.topbar.connect}
-          onAction={() => void connectWallet()}
-        />
+        <>
+          <AccessStateCard
+            title={m.common.connectRequiredTitle}
+            description={m.common.connectRequiredDescription}
+            actionLabel={m.topbar.connect}
+            onAction={() => void connectWallet()}
+          />
+          <DemoAccessCard compact />
+        </>
       ) : isWrongNetwork ? (
         <AccessStateCard
           title={m.common.wrongNetworkTitle}
@@ -73,10 +77,13 @@ export default function InvestorPage() {
           {error}
         </section>
       ) : !data.isInvestorWhitelisted ? (
-        <AccessStateCard
-          title={m.common.restrictedTitle}
-          description={m.investor.notWhitelistedDescription}
-        />
+        <>
+          <AccessStateCard
+            title={m.common.restrictedTitle}
+            description={m.investor.notWhitelistedDescription}
+          />
+          <DemoAccessCard compact />
+        </>
       ) : (
         <>
           <section className="grid gap-4 md:grid-cols-3">

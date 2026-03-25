@@ -31,6 +31,12 @@ export type MessageSchema = {
     restrictedTitle: string;
     wrongNetworkTitle: string;
     wrongNetworkDescription: string;
+    demoAccessTitle: string;
+    demoAccessDescription: string;
+    demoAccessPoints: string[];
+    telegramButton: string;
+    telegramHandleLabel: string;
+    telegramLinkLabel: string;
   };
   dashboard: {
     title: string;
@@ -173,6 +179,7 @@ export type MessageSchema = {
     heroSubtitle: string;
     ctaDashboard: string;
     ctaConnect: string;
+    howToTestTitle: string;
     overviewTitle: string;
     overviewItems: string[];
     walletGuideTitle: string;
@@ -228,6 +235,18 @@ export const messages: Record<Locale, MessageSchema> = {
       wrongNetworkTitle: "Wrong network",
       wrongNetworkDescription:
         "Switch wallet network to the configured chain and try again.",
+      demoAccessTitle: "Demo Access",
+      demoAccessDescription:
+        "This project uses a permissioned asset model, so Investor and Operator testing requires prior wallet registration.",
+      demoAccessPoints: [
+        "If you want to test the live demo, send only your wallet address via Telegram.",
+        "Telegram: @mantaminjae (https://t.me/mantaminjae)",
+        "Investor whitelist registration and demo FST minting can be provided if needed.",
+        "Never send your seed phrase or private key.",
+      ],
+      telegramButton: "Contact via Telegram",
+      telegramHandleLabel: "Telegram",
+      telegramLinkLabel: "Link",
     },
     dashboard: {
       title: "Dashboard",
@@ -389,6 +408,7 @@ export const messages: Record<Locale, MessageSchema> = {
         "Permissioned fund-share token system with an escrow-based redemption lifecycle for compliant on-chain operations.",
       ctaDashboard: "Go to Dashboard",
       ctaConnect: "Connect Wallet",
+      howToTestTitle: "How to Test",
       overviewTitle: "Project Overview",
       overviewItems: [
         "FundShareToken is a permissioned ERC-20 representing fund-share ownership.",
@@ -456,6 +476,18 @@ export const messages: Record<Locale, MessageSchema> = {
       wrongNetworkTitle: "잘못된 네트워크",
       wrongNetworkDescription:
         "설정된 체인으로 네트워크를 변경한 뒤 다시 시도하세요.",
+      demoAccessTitle: "데모 접근 안내",
+      demoAccessDescription:
+        "이 프로젝트는 권한형 자산 모델을 사용하므로 Investor/Operator 테스트 전 지갑 사전 등록이 필요합니다.",
+      demoAccessPoints: [
+        "라이브 데모 테스트를 원하면 지갑 주소만 텔레그램으로 보내주세요.",
+        "텔레그램: @mantaminjae (https://t.me/mantaminjae)",
+        "필요 시 투자자 화이트리스트 등록과 데모 FST 민팅을 지원합니다.",
+        "시드 문구나 프라이빗 키는 절대 보내지 마세요.",
+      ],
+      telegramButton: "텔레그램으로 문의",
+      telegramHandleLabel: "텔레그램",
+      telegramLinkLabel: "링크",
     },
     dashboard: {
       title: "대시보드",
@@ -616,6 +648,7 @@ export const messages: Record<Locale, MessageSchema> = {
         "컴플라이언스 요구사항을 반영한 권한형 펀드 지분 토큰과 에스크로 환매 라이프사이클을 제공합니다.",
       ctaDashboard: "대시보드 이동",
       ctaConnect: "지갑 연결",
+      howToTestTitle: "테스트 방법",
       overviewTitle: "프로젝트 개요",
       overviewItems: [
         "FundShareToken은 펀드 지분을 표현하는 권한형 ERC-20 토큰입니다.",
