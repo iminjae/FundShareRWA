@@ -12,6 +12,7 @@ export function Sidebar() {
     { href: "/dashboard", label: m.sidebar.dashboard },
     { href: "/investor", label: m.sidebar.investor },
     { href: "/operator", label: m.sidebar.operator },
+    { href: "/admin", label: m.sidebar.admin },
   ];
 
   return (

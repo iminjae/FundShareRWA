@@ -1,5 +1,11 @@
 import { ethers } from "ethers";
 
+export const DEFAULT_ADMIN_ROLE = ethers.ZeroHash;
+export const COMPLIANCE_ROLE = ethers.keccak256(
+  ethers.toUtf8Bytes("COMPLIANCE_ROLE")
+);
+export const MINTER_ROLE = ethers.keccak256(ethers.toUtf8Bytes("MINTER_ROLE"));
+export const PAUSER_ROLE = ethers.keccak256(ethers.toUtf8Bytes("PAUSER_ROLE"));
 export const BURNER_ROLE = ethers.keccak256(ethers.toUtf8Bytes("BURNER_ROLE"));
 export const REDEMPTION_OPERATOR_ROLE = ethers.keccak256(
   ethers.toUtf8Bytes("REDEMPTION_OPERATOR_ROLE")

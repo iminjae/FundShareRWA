@@ -41,16 +41,16 @@ contract RedemptionManager is AccessControl {
     error InsufficientBalance(address owner, uint256 requiredAmount, uint256 currentBalance);
 
     event RedemptionRequested(uint256 indexed requestId, address indexed requester, uint256 amount);
-    event RedemptionApproved(uint256 indexed requestId, address indexed requester);
-    event RedemptionRejected(uint256 indexed requestId, address indexed requester, uint256 amount);
-    event RedemptionProcessed(uint256 indexed requestId, address indexed requester, uint256 amount);
+    event RedemptionApproved(uint256 indexed requestId, address indexed operator, address indexed requester);
+    event RedemptionRejected(uint256 indexed requestId, address indexed operator, address indexed requester, uint256 amount);
+    event RedemptionProcessed(uint256 indexed requestId, address indexed operator, address indexed requester, uint256 amount);
 
     /// @notice 환매 관리자 컨트랙트를 초기화하고 관리자/운영자 권한을 부여합니다.
     /// @dev
     /// - 이 컨트랙트는 환매 수명주기에서 에스크로 역할의 시스템 주소로 동작합니다.
     /// - 사용 전 FundShareToken의 시스템 화이트리스트에 이 컨트랙트를 등록해야 합니다.
     /// - 처리(process) 기능 사용 전 FundShareToken의 BURNER_ROLE을 이 컨트랙트에 부여해야 합니다.
-    /// @param admin DEFAULT_ADMIN_ROLE 및 REDEMPTION_OPERATOR_ROLE을 받을 주소입니다.
+    /// @param admin DEFAULT_ADMIN_ROLE 및 초기 REDEMPTION_OPERATOR_ROLE을 받을 주소입니다.
     /// @param tokenAddress 배포된 FundShareToken 컨트랙트 주소입니다.
     constructor(address admin, address tokenAddress) {
         if (admin == address(0) || tokenAddress == address(0)) revert ZeroAddress();
@@ -103,7 +103,7 @@ contract RedemptionManager is AccessControl {
         }
 
         request.status = RedemptionStatus.Approved;
-        emit RedemptionApproved(requestId, request.requester);
+        emit RedemptionApproved(requestId, msg.sender, request.requester);
     }
 
     /// @notice 요청 상태가 Requested 또는 Approved인 환매 요청을 거절하고 예치 토큰을 반환합니다.
@@ -122,7 +122,7 @@ contract RedemptionManager is AccessControl {
         fundShareToken.transfer(request.requester, request.amount);
         request.status = RedemptionStatus.Rejected;
 
-        emit RedemptionRejected(requestId, request.requester, request.amount);
+        emit RedemptionRejected(requestId, msg.sender, request.requester, request.amount);
     }
 
     /// @notice 승인된 환매 요청을 처리하고 예치 토큰을 소각합니다.
@@ -142,7 +142,7 @@ contract RedemptionManager is AccessControl {
         fundShareToken.burn(address(this), request.amount);
         request.status = RedemptionStatus.Processed;
 
-        emit RedemptionProcessed(requestId, request.requester, request.amount);
+        emit RedemptionProcessed(requestId, msg.sender, request.requester, request.amount);
     }
 
     /// @notice 환매 요청 상세 정보를 조회합니다.

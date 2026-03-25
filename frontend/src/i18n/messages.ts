@@ -15,6 +15,7 @@ export type MessageSchema = {
     dashboard: string;
     investor: string;
     operator: string;
+    admin: string;
   };
   language: {
     label: string;
@@ -95,6 +96,52 @@ export type MessageSchema = {
       dash: string;
     };
   };
+  admin: {
+    title: string;
+    description: string;
+    noPermissionDescription: string;
+    connectedWallet: string;
+    tokenAdminStatus: string;
+    redemptionAdminStatus: string;
+    minterStatus: string;
+    targetAddress: string;
+    targetPlaceholder: string;
+    useMyWallet: string;
+    roleAndAccessActions: string;
+    whitelistActions: string;
+    operatorRoleActions: string;
+    protocolControls: string;
+    addInvestor: string;
+    removeInvestor: string;
+    addSystem: string;
+    removeSystem: string;
+    grantOperator: string;
+    revokeOperator: string;
+    pauseToken: string;
+    unpauseToken: string;
+    mintSection: string;
+    mintAmount: string;
+    mintButton: string;
+    targetStatus: string;
+    investorWhitelisted: string;
+    systemWhitelisted: string;
+    operatorRole: string;
+    fstBalance: string;
+    tokenPauseState: string;
+    quickActions: string;
+    addMeInvestor: string;
+    removeMeInvestor: string;
+    grantMeOperator: string;
+    revokeMeOperator: string;
+    mintToMe: string;
+    yes: string;
+    no: string;
+    active: string;
+    paused: string;
+    notPaused: string;
+    invalidAddress: string;
+    amountRequired: string;
+  };
   table: {
     requestId: string;
     requester: string;
@@ -163,6 +210,7 @@ export const messages: Record<Locale, MessageSchema> = {
       dashboard: "Dashboard",
       investor: "Investor",
       operator: "Operator",
+      admin: "Admin",
     },
     language: {
       label: "Language",
@@ -184,14 +232,14 @@ export const messages: Record<Locale, MessageSchema> = {
     dashboard: {
       title: "Dashboard",
       description:
-        "Protocol health overview for permissioned FST issuance, escrowed redemptions, and operator processing.",
+        "Protocol health overview for permissioned FST issuance, escrowed redemptions, and role-based operator processing.",
       disconnectedTitle: "Connect wallet for interactive dashboard use",
       disconnectedDescription:
         "You can still view protocol overview data, but write actions require wallet connection.",
       totalSupply: "Total Supply",
       escrowBalance: "Escrow Balance",
       nextRequestId: "Next Request ID",
-      walletHint: "Current operator session",
+      walletHint: "Connected account session",
       supplyHint: "Tokenized fund-share supply",
       escrowHint: "Held by RedemptionManager",
       requestIdHint: "Monotonic redemption sequence",
@@ -204,7 +252,7 @@ export const messages: Record<Locale, MessageSchema> = {
         "Approve token allowance",
         "Request redemption",
         "Tokens move into escrow",
-        "Operator approves or rejects",
+        "Authorized operators approve or reject",
         "Process burns escrowed shares",
       ],
     },
@@ -235,15 +283,15 @@ export const messages: Record<Locale, MessageSchema> = {
     operator: {
       title: "Operator",
       description:
-        "Review the redemption queue and manage request lifecycle transitions under operator permissions.",
+        "This console is available to accounts granted REDEMPTION_OPERATOR_ROLE for role-based redemption lifecycle actions.",
       noRoleDescription:
-        "This wallet does not have REDEMPTION_OPERATOR_ROLE.",
-      roleStatus: "Operator Role Status",
-      roleActive: "Active",
+        "This account does not hold REDEMPTION_OPERATOR_ROLE. Only authorized operator accounts can access this console.",
+      roleStatus: "Connected Account Role",
+      roleActive: "Authorized Operator",
       escrowedFst: "Escrowed FST",
       pendingCount: "Pending Requests Count",
       queueTitle: "Redemption Queue",
-      roleHint: "REDEMPTION_OPERATOR_ROLE",
+      roleHint: "Access source: REDEMPTION_OPERATOR_ROLE",
       pendingHint: "Status = Requested",
       tabs: {
         all: "All",
@@ -259,6 +307,54 @@ export const messages: Record<Locale, MessageSchema> = {
         completed: "Completed",
         dash: "-",
       },
+    },
+    admin: {
+      title: "Admin Console",
+      description:
+        "Role-based protocol control plane for interview/demo workflows, permission setup, and access state management.",
+      noPermissionDescription:
+        "This account does not have eligible control permissions. Required: FundShareToken DEFAULT_ADMIN_ROLE/COMPLIANCE_ROLE/MINTER_ROLE/PAUSER_ROLE or RedemptionManager DEFAULT_ADMIN_ROLE.",
+      connectedWallet: "Connected Wallet",
+      tokenAdminStatus: "FundShareToken Admin/Compliance",
+      redemptionAdminStatus: "RedemptionManager Admin",
+      minterStatus: "Minter Role Status",
+      targetAddress: "Target Address",
+      targetPlaceholder: "0x...",
+      useMyWallet: "Use My Wallet",
+      roleAndAccessActions: "Access Control Actions",
+      whitelistActions: "Whitelist Controls",
+      operatorRoleActions: "Operator Role Controls",
+      protocolControls: "Protocol Controls",
+      addInvestor: "Add Investor Whitelist",
+      removeInvestor: "Remove Investor Whitelist",
+      addSystem: "Add System Whitelist",
+      removeSystem: "Remove System Whitelist",
+      grantOperator: "Grant Operator Role",
+      revokeOperator: "Revoke Operator Role",
+      pauseToken: "Pause Token",
+      unpauseToken: "Unpause Token",
+      mintSection: "Demo Token Mint",
+      mintAmount: "Amount",
+      mintButton: "Mint Demo FST",
+      targetStatus: "Target Status",
+      investorWhitelisted: "Investor Whitelisted",
+      systemWhitelisted: "System Whitelisted",
+      operatorRole: "Operator Role",
+      fstBalance: "Current FST Balance",
+      tokenPauseState: "Token Pause State",
+      quickActions: "Quick Actions",
+      addMeInvestor: "Add Me as Investor",
+      removeMeInvestor: "Remove Me as Investor",
+      grantMeOperator: "Grant Me Operator Role",
+      revokeMeOperator: "Revoke Me Operator Role",
+      mintToMe: "Mint Demo FST to Me",
+      yes: "Yes",
+      no: "No",
+      active: "Active",
+      paused: "Paused",
+      notPaused: "Not Paused",
+      invalidAddress: "Please enter a valid target address.",
+      amountRequired: "Enter an amount greater than zero.",
     },
     table: {
       requestId: "Request ID",
@@ -298,7 +394,8 @@ export const messages: Record<Locale, MessageSchema> = {
         "FundShareToken is a permissioned ERC-20 representing fund-share ownership.",
         "RedemptionManager coordinates escrow-based redemption requests and lifecycle transitions.",
         "Investor and system addresses are separated to enforce transfer routing and compliance.",
-        "Operators approve, reject, or process requests after off-chain settlement checks.",
+        "One or more authorized operator accounts can approve, reject, or process requests after off-chain settlement checks.",
+        "Operator permissions are role-based through AccessControl, separate from the admin role.",
         "Escrow isolates pending redemption balances before final burn processing.",
       ],
       walletGuideTitle: "How to Connect MetaMask",
@@ -341,6 +438,7 @@ export const messages: Record<Locale, MessageSchema> = {
       dashboard: "대시보드",
       investor: "투자자",
       operator: "운영자",
+      admin: "관리자",
     },
     language: {
       label: "언어",
@@ -362,14 +460,14 @@ export const messages: Record<Locale, MessageSchema> = {
     dashboard: {
       title: "대시보드",
       description:
-        "권한형 FST 발행, 에스크로 환매, 운영자 처리 현황을 한눈에 확인합니다.",
+        "권한형 FST 발행, 에스크로 환매, 역할 기반 운영자 처리 현황을 한눈에 확인합니다.",
       disconnectedTitle: "대시보드 상호작용을 위해 지갑을 연결하세요",
       disconnectedDescription:
         "개요 조회는 가능하지만, 쓰기 트랜잭션은 지갑 연결이 필요합니다.",
       totalSupply: "총 발행량",
       escrowBalance: "에스크로 잔고",
       nextRequestId: "다음 요청 ID",
-      walletHint: "현재 운영 세션",
+      walletHint: "현재 연결 계정 세션",
       supplyHint: "토큰화된 펀드 지분 총량",
       escrowHint: "RedemptionManager 보관 수량",
       requestIdHint: "환매 요청 순차 번호",
@@ -382,7 +480,7 @@ export const messages: Record<Locale, MessageSchema> = {
         "토큰 허용량 승인",
         "환매 요청 제출",
         "토큰 에스크로 이동",
-        "운영자 승인 또는 거절",
+        "권한 보유 운영자 승인 또는 거절",
         "처리 단계에서 에스크로 소각",
       ],
     },
@@ -413,15 +511,15 @@ export const messages: Record<Locale, MessageSchema> = {
     operator: {
       title: "운영자",
       description:
-        "환매 큐를 검토하고 운영자 권한으로 요청 상태를 관리합니다.",
+        "이 콘솔은 REDEMPTION_OPERATOR_ROLE이 부여된 계정이 역할 기반으로 환매 상태를 관리하는 화면입니다.",
       noRoleDescription:
-        "이 지갑에는 REDEMPTION_OPERATOR_ROLE 권한이 없습니다.",
-      roleStatus: "운영자 권한 상태",
-      roleActive: "활성",
+        "이 계정에는 REDEMPTION_OPERATOR_ROLE 권한이 없습니다. 권한 보유 운영자 계정만 이 콘솔에 접근할 수 있습니다.",
+      roleStatus: "연결 계정 역할",
+      roleActive: "권한 보유 운영자",
       escrowedFst: "에스크로 FST",
       pendingCount: "대기 요청 수",
       queueTitle: "환매 큐",
-      roleHint: "REDEMPTION_OPERATOR_ROLE",
+      roleHint: "접근 근거: REDEMPTION_OPERATOR_ROLE",
       pendingHint: "상태 = Requested",
       tabs: {
         all: "전체",
@@ -437,6 +535,54 @@ export const messages: Record<Locale, MessageSchema> = {
         completed: "완료",
         dash: "-",
       },
+    },
+    admin: {
+      title: "관리자 콘솔",
+      description:
+        "면접/데모 워크플로우에 맞춘 역할 기반 프로토콜 제어 화면입니다. 권한 설정과 접근 상태를 관리할 수 있습니다.",
+      noPermissionDescription:
+        "이 계정에는 제어 권한이 없습니다. 필요 권한: FundShareToken DEFAULT_ADMIN_ROLE/COMPLIANCE_ROLE/MINTER_ROLE/PAUSER_ROLE 또는 RedemptionManager DEFAULT_ADMIN_ROLE.",
+      connectedWallet: "연결 지갑",
+      tokenAdminStatus: "FundShareToken 관리자/컴플라이언스",
+      redemptionAdminStatus: "RedemptionManager 관리자",
+      minterStatus: "민터 권한 상태",
+      targetAddress: "대상 주소",
+      targetPlaceholder: "0x...",
+      useMyWallet: "내 지갑 사용",
+      roleAndAccessActions: "접근 제어 액션",
+      whitelistActions: "화이트리스트 제어",
+      operatorRoleActions: "운영자 권한 제어",
+      protocolControls: "프로토콜 제어",
+      addInvestor: "투자자 화이트리스트 추가",
+      removeInvestor: "투자자 화이트리스트 제거",
+      addSystem: "시스템 화이트리스트 추가",
+      removeSystem: "시스템 화이트리스트 제거",
+      grantOperator: "운영자 권한 부여",
+      revokeOperator: "운영자 권한 해제",
+      pauseToken: "토큰 일시정지",
+      unpauseToken: "토큰 재개",
+      mintSection: "데모 토큰 민트",
+      mintAmount: "수량",
+      mintButton: "데모 FST 민트",
+      targetStatus: "대상 상태 조회",
+      investorWhitelisted: "투자자 화이트리스트",
+      systemWhitelisted: "시스템 화이트리스트",
+      operatorRole: "운영자 권한",
+      fstBalance: "현재 FST 잔액",
+      tokenPauseState: "토큰 정지 상태",
+      quickActions: "빠른 액션",
+      addMeInvestor: "내 계정 투자자 추가",
+      removeMeInvestor: "내 계정 투자자 제거",
+      grantMeOperator: "내 계정 운영자 권한 부여",
+      revokeMeOperator: "내 계정 운영자 권한 해제",
+      mintToMe: "내 계정으로 데모 FST 민트",
+      yes: "예",
+      no: "아니오",
+      active: "활성",
+      paused: "정지됨",
+      notPaused: "정상",
+      invalidAddress: "올바른 대상 주소를 입력하세요.",
+      amountRequired: "0보다 큰 수량을 입력하세요.",
     },
     table: {
       requestId: "요청 ID",
@@ -475,7 +621,8 @@ export const messages: Record<Locale, MessageSchema> = {
         "FundShareToken은 펀드 지분을 표현하는 권한형 ERC-20 토큰입니다.",
         "RedemptionManager는 에스크로 기반 환매 요청과 상태 전환을 관리합니다.",
         "투자자 주소와 시스템 주소를 분리해 전송 경로와 컴플라이언스를 강제합니다.",
-        "운영자는 오프체인 정산 확인 후 승인·거절·처리를 수행합니다.",
+        "하나 이상의 권한 보유 운영자 계정이 오프체인 정산 확인 후 승인·거절·처리를 수행할 수 있습니다.",
+        "운영자 권한은 AccessControl 기반 역할 모델이며 관리자 역할과 분리됩니다.",
         "에스크로는 최종 소각 전 대기 물량을 안전하게 분리 관리합니다.",
       ],
       walletGuideTitle: "MetaMask 연결 가이드",
